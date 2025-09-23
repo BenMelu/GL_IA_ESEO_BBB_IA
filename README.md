@@ -1,1 +1,3 @@
-# GL_IA_ESEO_BBB
+# Projet S7: IA pédagogique
+
+Fait par Ghyslain COUPLAN et Lilian LEMERCIER
