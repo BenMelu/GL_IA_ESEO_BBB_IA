@@ -31,13 +31,35 @@ if not os.path.isfile(PATH+"/modelMNIST.keras"):
     model.add(tf.keras.layers.MaxPooling2D((2, 2)))
     model.add(tf.keras.layers.Flatten())
 
-    model.add(tf.keras.layers.Dense(32, activation='relu'))
-    model.add(tf.keras.layers.Dense(32, activation='relu'))
+    model.add(tf.keras.layers.Dense(64, activation='relu'))
+    model.add(tf.keras.layers.Dropout(0.5))
+    model.add(tf.keras.layers.Dense(64, activation='relu'))
+    model.add(tf.keras.layers.Dropout(0.5))
+    model.add(tf.keras.layers.Dense(64, activation='relu'))
     model.add(tf.keras.layers.Dense(units=10, activation='softmax'))
 
     model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=["accuracy"])
 
-    model.fit(x=X_train_norm,y=y_train,epochs=20,batch_size=256,validation_data=(X_val_norm, y_val))
+    history=model.fit(x=X_train_norm,y=y_train,epochs=50,batch_size=256,validation_data=(X_val_norm, y_val))
+
+    plt.subplot(121)
+    plt.plot(history.history['accuracy'])
+    plt.plot(history.history['val_accuracy'], '--')
+    plt.title('Model accuracy')
+    plt.ylabel('Accuracy')
+    plt.ylim(0.9, 1)
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Validation'], loc='lower right')
+
+    plt.subplot(122)
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'], '--')
+    plt.title('Model loss')
+    plt.ylabel('Loss')
+    plt.xlabel('Epoch')
+    plt.yscale('log',base=10)
+    plt.legend(['Train', 'Validation'], loc='upper left')
+    plt.show()
 
     model.save(PATH+"/modelMNIST.keras")
     
@@ -84,7 +106,7 @@ result=model.evaluate(X_test_norm,y_test,batch_size=128)
     plt.show()
 plot_misclassified_images(model, X_test_norm, y_test, 25)'''
 
-pred_9=cv2.imread("9.jpeg",cv2.IMREAD_GRAYSCALE)
+pred_9=cv2.imread("photos_MNIST/9G.jpeg",cv2.IMREAD_GRAYSCALE)
 pred_9_norm=cv2.resize(pred_9, dsize=(28, 28), interpolation=cv2.INTER_CUBIC)
 pred_9_norm = cv2.bitwise_not(pred_9_norm)
 
@@ -97,15 +119,23 @@ def reshapeIM(file,array):
     array=np.concat((array,arr_pred),axis=0)
     return array
 
-test=reshapeIM("5.jpeg",test)
-test=reshapeIM("6.jpeg",test)
-test=reshapeIM("7.jpg",test)
-test=reshapeIM("1.jpeg",test)
-test=reshapeIM("2.jpeg",test)
-test=reshapeIM("3.jpeg",test)
-print(model.predict(test))
-
-
-
-
-
+test=reshapeIM("photos_MNIST/8G.jpeg",test)
+test=reshapeIM("photos_MNIST/7G.jpeg",test)
+test=reshapeIM("photos_MNIST/6G.jpeg",test)
+test=reshapeIM("photos_MNIST/5G.jpeg",test)
+test=reshapeIM("photos_MNIST/4G.jpeg",test)
+test=reshapeIM("photos_MNIST/3G.jpeg",test)
+test=reshapeIM("photos_MNIST/2G.jpeg",test)
+test=reshapeIM("photos_MNIST/1G.jpeg",test)
+y_pred=model.predict(test)
+N=3
+y_pred_classes = np.argmax(y_pred, axis=1)
+plt.figure(figsize=(12, 12))
+for i in range(0,9):
+        plt.subplot(3,3, i + 1)
+        plt.imshow(test[i].reshape(28, 28), cmap='gray')
+        plt.title(f"Prédit: {y_pred_classes[i]}")
+        plt.axis('off')
+    
+plt.tight_layout()
+plt.show()
