@@ -21,7 +21,6 @@ X_val_norm=X_val/255
 if not os.path.isfile(PATH+"/modelCIFAR100.keras"):
     model=tf.keras.Sequential()
     model.add(tf.keras.layers.Conv2D(32,(3,3),input_shape=(32,32,3), activation='relu',padding="same",strides=1))
-    model.add(tf.keras.Layers.Lambda(lambda x: tf.image.rgb_to_grayscale(x)))
     model.add(tf.keras.layers.Conv2D(32, (3, 3), activation='relu',padding="same",strides=1))
     #model.add(tf.keras.layers.Conv2D(16, (3, 3), activation='relu',padding="same",strides=1))
     model.add(tf.keras.layers.MaxPooling2D((2, 2)))
