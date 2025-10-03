@@ -43,17 +43,15 @@ X_pred_norm_J=scaler.transform(X_pred_J)
 
 if not os.path.isfile(PATH+"/modelTita.keras"):
     model=tf.keras.Sequential()
-    model.add(tf.keras.layers.Dense(units=64,input_dim=X_train.shape[1], activation='relu'))
+    model.add(tf.keras.layers.Dense(units=128,input_dim=X_train.shape[1], activation='relu'))
     model.add(tf.keras.layers.Dropout(0.3))
-    model.add(tf.keras.layers.Dense(units=64, activation='relu'))
-    model.add(tf.keras.layers.Dropout(0.3))
-    model.add(tf.keras.layers.Dense(units=64, activation='relu'))
+    model.add(tf.keras.layers.Dense(units=128, activation='relu'))
     model.add(tf.keras.layers.Dropout(0.2))
     model.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
 
     model.compile(loss='binary_crossentropy',optimizer='SGD',metrics=["accuracy"])
 
-    model.fit(x=X_train_norm,y=y_train,epochs=50,validation_data=(X_val_norm, y_val))
+    model.fit(x=X_train_norm,y=y_train,epochs=500,validation_data=(X_val_norm, y_val),callbacks=[tf.keras.callbacks.EarlyStopping(patience=25)])
 
     model.save(PATH+"/modelTita.keras")
     
