@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 17
+names: ['ArretBus', 'Attention-Passage-Pieton', 'AttentionEnfant', 'Ceder-le-Passage', 'Demi-Tour-Interdit', 'Demi-Tour-Obligatoire', 'Double-Sens', 'Limite-30', 'Limite-50', 'Limite-60', 'Panneau', 'Panneau-Stop', 'Passage-pieton', 'Sens-Interdit', 'Sens-Unique', 'SensGiratoire', 'SensObligatoire']
+
+roboflow:
+  workspace: dmpanneau
+  project: panneau-lk1qm
+  version: 4
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/dmpanneau/panneau-lk1qm/dataset/4
