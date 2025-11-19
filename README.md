@@ -6,7 +6,7 @@ Ce modèle permet de reconnaitre diférrents panneaux routiers ainsi que des obs
 Cette IA finale sera implémentée dans une voiture basée sur un microcontrolleur :
 
 
-et certains des modèles d'IA seront implémentés sur le site pédagogique :
+et certains des modèles d'IA seront implémentés sur le site pédagogique : https://github.com/BenMelu/GL_IA_ESEO_BBB_SITE
 
 
 Fait par Ghyslain COUPLAN et Lilian LEMERCIER
