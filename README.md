@@ -3,6 +3,12 @@
 Modèle d'IA de détection d'objets à but de démonstration lors d'activités pédagogique sur l'IA.
 Ce modèle permet de reconnaitre diférrents panneaux routiers ainsi que des obstacles tel que des voitures, des vélos ou des piétons.
 
+Cette IA finale sera implémentée dans une voiture basée sur un microcontrolleur :
+
+
+et certains des modèles d'IA seront implémentés sur le site pédagogique :
+
+
 Fait par Ghyslain COUPLAN et Lilian LEMERCIER
 
 Branches:
